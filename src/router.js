@@ -1,24 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import CoachDetail from "./pages/coaches/CoachDetail.vue";
-import CoachesList from "./pages/coaches/CoachesList.vue";
-import CoachRegistration from "./pages/coaches/CoachRegistration.vue";
-import ContactCoach from "./pages/requests/ContactCoach.vue";
-import RequestsRecieved from "./pages/requests/RequestsRecieved.vue";
-import NotFound from './pages/NotFound.vue'
-import ContactCoach from "./pages/requests/ContactCoach.vue";
-
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: '/', redirect: '/coaches' },
-        { path: '/coaches', component: CoachesList },
-        { path: '/coaches/:id', component: CoachDetail, children: [
-            { path: '/contact', component: ContactCoach },
+        { path: '/coaches', component: () => import("./pages/coaches/CoachesList.vue") },
+        { path: '/coaches/:id', component: () => import("./pages/coaches/CoachDetail.vue"), children: [
+            { path: '/contact', component: () => import("./pages/requests/ContactCoach.vue") },
         ] },
-        { path: '/register', component: CoachRegistration },
-        { path: '/request', component: RequestsRecieved },
-        { path: '/:notFound(.*)', component: NotFound },
+        { path: '/register', component: () => import("./pages/coaches/CoachRegistration.vue") },
+        { path: '/requests', component: () => import("./pages/requests/RequestsRecieved.vue") },
+        { path: '/:notFound(.*)', component: () => import("./pages/NotFound.vue")},
     ],
 });
 
