@@ -19,7 +19,7 @@ export default {
         <h3>{{ fullName }}</h3>
         <h4>${{ rate }}/hour</h4>
         <div>
-            <base-badge v-for="area in areas" :key="area" :type="area" :title=area></base-badge>
+            <base-badge v-for="area in areas" :key="area" :type="area"></base-badge>
         </div>
         <div class="actions">
             <base-button mode="outline" link :to="coachContactLink">Contact</base-button>
