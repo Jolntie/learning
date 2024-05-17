@@ -1,5 +1,6 @@
 <script>
 export default {
+  emits: ['save-data'],
   data() {
     return {
       firstname: '',
@@ -11,7 +12,7 @@ export default {
   },
   methods: {
     submitForm() {
-      const fromData = {
+      const formData = {
         first: this.firstname,
         last: this.lastname,
         desc: this.description,
@@ -19,7 +20,7 @@ export default {
         areas: this.areas
       }
 
-      console.log(fromData);
+      this.$emit('save-data', formData)
     }
   }
 };
