@@ -7,7 +7,7 @@ const router = createRouter({
         { path: '/coaches', component: () => import("./pages/coaches/CoachesList.vue") },
         {
             path: '/coaches/:id', component: () => import("./pages/coaches/CoachDetail.vue"), props: true, children: [
-                { path: '/contact', component: () => import("./pages/requests/ContactCoach.vue") },
+                { path: 'contact', component: () => import("./pages/requests/ContactCoach.vue") },
             ]
         },
         { path: '/register', component: () => import("./pages/coaches/CoachRegistration.vue") },

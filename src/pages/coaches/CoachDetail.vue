@@ -3,7 +3,7 @@ export default {
     props: ['id'],
     data() {
         return {
-            selectedCoach: null
+            selectedCoach: null,
         };
     },
     computed: {
@@ -25,6 +25,7 @@ export default {
     },
     created() {
         this.selectedCoach = this.$store.getters['coaches/coaches'].find(coach => coach.id === this.id);
+        this.isContactClicked = true;
     }
 };
 </script>
@@ -51,3 +52,11 @@ export default {
         </base-card>
     </section>
 </template>
+
+<style scoped>
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+</style>
