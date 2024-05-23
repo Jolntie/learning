@@ -10,6 +10,7 @@ export default {
     data() {
         return {
             isLoading: false,
+            error: null,
             activeFilters: {
                 frontend: true,
                 backend: true,
@@ -27,7 +28,7 @@ export default {
                     return true;
                 if (this.activeFilters.career && coach.areas.includes('career'))
                     return true;
-                
+
                 return false
             });
         },
@@ -47,13 +48,23 @@ export default {
         },
         async loadCoaches() {
             this.isLoading = true;
-            await this.$store.dispatch('coaches/loadCoaches');
+            try {
+                await this.$store.dispatch('coaches/loadCoaches');
+            } catch (error) {
+                this.error = error.message || 'Something went wrong!';
+            }
             this.isLoading = false;
+        },
+        handleError() {
+            this.error = null;
         }
     }
 };
 </script>
 <template>
+    <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+        <p>{{ error }}</p>
+    </base-dialog>
     <section>
         <coach-filter @change-filter="setFilters"></coach-filter>
     </section>
