@@ -13,7 +13,7 @@ export default {
             method: 'PUT',
             body: JSON.stringify(coachData)
         });
-        const responseData = await response.json();        
+        const responseData = await response.json();
 
         if (!response.ok) {
             const error = new Error(responseData.message || 'Failed to fetch!');
@@ -25,7 +25,10 @@ export default {
             id: userId
         });
     },
-    async loadCoaches(context) {
+    async loadCoaches(context, payload) {
+        if (!payload.forceRefresh && !context.getters.shouldUpdate)
+            return;
+
         const response = await fetch(`https://goals-7455a-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`);
         const responseData = await response.json();
 
@@ -48,5 +51,6 @@ export default {
         }
 
         context.commit('setCoaches', coaches);
+        context.commit('setFetchTimestamp');
     }
 };
