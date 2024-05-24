@@ -12,6 +12,7 @@ const router = createRouter({
         },
         { path: '/register', component: () => import("./pages/coaches/CoachRegistration.vue") },
         { path: '/requests', component: () => import("./pages/requests/RequestsRecieved.vue") },
+        { path: '/auth', component: () => import("./pages/auth/UserAuth.vue") },
         { path: '/:notFound(.*)', component: () => import("./pages/NotFound.vue") },
     ],
 });
