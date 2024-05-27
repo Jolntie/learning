@@ -1,11 +1,15 @@
 <script>
+import { handleError } from 'vue';
+
 export default {
     data() {
         return {
             email: '',
             password: '',
             formIsValid: true,
-            mode: 'login'
+            mode: 'login',
+            isLoading: false,
+            error: null
         };
     },
     computed: {
@@ -25,12 +29,29 @@ export default {
         }
     },
     methods: {
-        submitForm() {
+        async submitForm() {
             this.formIsValid = true;
             if (this.email === '' || !this.email.includes('@') || this.password.lenght < 6) {
                 this.formIsValid = false;
                 return;
             }
+
+            this.isLoading = true;
+
+            try {
+                if (this.mode === 'login') {
+                    console.log("Bob")
+                } else {
+                    await this.$store.dispatch(this.mode, {
+                        email: this.email,
+                        password: this.password
+                    });
+                }
+            } catch (error) {
+                this.error = error || 'Failed to authenticate.';
+            }
+
+            this.isLoading = false;
         },
         switchAutMode() {
             if (this.mode === 'login') {
@@ -38,11 +59,22 @@ export default {
             } else {
                 this.mode = 'login';
             }
+        },
+        handleError() {
+            this.error = null;
         }
     }
 };
 </script>
 <template>
+    <div>
+        <base-dialog :show="!!error" title="An error occurred" @close="handleError">
+            <p>{{ error }}</p>
+        </base-dialog>
+        <base-dialog :show="isLoading" title="Authenticating..." fixed>
+            <base-spinner></base-spinner>
+        </base-dialog>
+    </div>
     <base-card>
         <form @submit.prevent="submitForm">
             <div class="form-control">
@@ -54,7 +86,7 @@ export default {
                 <input type="password" id="password" v-model.trim="password">
             </div>
             <p v-if="!formIsValid">Please enter a valid email and password.</p>
-            <base-button @click="switchAutMode">{{ submitButtonCaption }}</base-button>
+            <base-button>{{ submitButtonCaption }}</base-button>
             <base-button type="button" mode="flat" @click="switchAutMode">{{ switchModeButtonCaption }}</base-button>
         </form>
     </base-card>
