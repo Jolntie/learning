@@ -7,6 +7,11 @@ export default {
     isLoggedIn() {
       return this.$store.getters.isAuthenticated;
     }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+    }
   }
 }
 </script>
@@ -17,9 +22,8 @@ export default {
       <ul>
         <li><router-link to="/coaches">All Coaches</router-link></li>
         <li v-if="isCoach"><router-link to="/requests">Requests</router-link></li>
-        <li v-if="!isLoggedIn"><!-- TODO: kijk of dit een if else kan worden  -->
-          <router-link to="/auth">Login</router-link>
-        </li>
+        <li v-if="!isLoggedIn"><!-- TODO: kijk of dit een if else kan worden  --><router-link to="/auth">Login</router-link></li>
+        <li v-else><base-button @click="logout">Logout</base-button></li>
       </ul>
     </nav>
   </header>
