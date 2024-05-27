@@ -1,6 +1,4 @@
 <script>
-import { handleError } from 'vue';
-
 export default {
     data() {
         return {
@@ -38,9 +36,12 @@ export default {
 
             this.isLoading = true;
 
-            try {
+            try { // TODO: als het goed is can deze if statement weg...
                 if (this.mode === 'login') {
-                    console.log("Bob")
+                    await this.$store.dispatch(this.mode, {
+                        email: this.email,
+                        password: this.password
+                    });
                 } else {
                     await this.$store.dispatch(this.mode, {
                         email: this.email,
