@@ -3,6 +3,9 @@ export default {
   computed: {
     isCoach() {
       return this.$store.getters['coaches/isCoach'];
+    },
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
     }
   }
 }
@@ -14,6 +17,9 @@ export default {
       <ul>
         <li><router-link to="/coaches">All Coaches</router-link></li>
         <li v-if="isCoach"><router-link to="/requests">Requests</router-link></li>
+        <li v-if="!isLoggedIn"><!-- TODO: kijk of dit een if else kan worden  -->
+          <router-link to="/auth">Login</router-link>
+        </li>
       </ul>
     </nav>
   </header>
