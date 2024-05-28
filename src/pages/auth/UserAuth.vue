@@ -48,6 +48,8 @@ export default {
                         password: this.password
                     });
                 }
+                const redirectUrl = `/${(this.$route.query.redirect || 'coaches')}`;
+                this.$router.replace(redirectUrl);
             } catch (error) {
                 this.error = error || 'Failed to authenticate.';
             }
