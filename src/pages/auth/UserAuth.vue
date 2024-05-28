@@ -35,19 +35,12 @@ export default {
             }
 
             this.isLoading = true;
+            try {
+                await this.$store.dispatch(this.mode, {
+                    email: this.email,
+                    password: this.password
+                });
 
-            try { // TODO: als het goed is can deze if statement weg...
-                if (this.mode === 'login') {
-                    await this.$store.dispatch(this.mode, {
-                        email: this.email,
-                        password: this.password
-                    });
-                } else {
-                    await this.$store.dispatch(this.mode, {
-                        email: this.email,
-                        password: this.password
-                    });
-                }
                 const redirectUrl = `/${(this.$route.query.redirect || 'coaches')}`;
                 this.$router.replace(redirectUrl);
             } catch (error) {
