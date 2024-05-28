@@ -33,10 +33,13 @@ export default {
 header {
   width: 100%;
   height: 5rem;
-  background-color: #3d008d;
+  background-color: #3d008df4;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure the header stays on top of other elements */
 }
 
 header a {
