@@ -12,9 +12,12 @@ export default {
     },
     partialEmail() {
       const email = this.$store.getters.userEmail;
-      const emailParts = email.split('@');
-
-      return emailParts[0];
+      if (email) {
+        const emailParts = email.split('@');
+        return emailParts[0];
+      } else {
+        return '';
+      }
     }
   },
   methods: {
