@@ -73,7 +73,7 @@ export default {
             <coach-filter @change-filter="setFilters"></coach-filter>
         </section>
         <section>
-            <base-card>
+            <base-card :style="{ width: filteredCoaches.length >= 6 ? '79rem' : '' }">
                 <div class="controls">
                     <base-button mode="outline" @click="loadCoaches(true)">Refresh</base-button>
                     <base-button link to="/auth?redirect=register" v-if="!isLoggedIn">Login to register as coach</base-button>
@@ -83,7 +83,7 @@ export default {
                     <base-spinner></base-spinner>
                 </div>
                 <ul v-else-if="hasCoaches">
-                    <coach-item v-for="coach in filteredCoaches" :key="coach.id" :id="coach.id"
+                    <coach-item style="width: 38rem;" v-for="coach in filteredCoaches" :key="coach.id" :id="coach.id"
                         :first-name="coach.firstName" :last-name="coach.lastName" :rate="coach.hourlyRate"
                         :areas="coach.areas">
                     </coach-item>
@@ -99,6 +99,9 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .controls {
