@@ -4,6 +4,7 @@ export default {
         const coachData = {
             firstName: data.first,
             lastName: data.last,
+            note: data.note,
             description: data.desc,
             hourlyRate: data.rate,
             areas: data.areas
@@ -45,6 +46,7 @@ export default {
                 id: key,
                 firstName: responseData[key].firstName,
                 lastName: responseData[key].lastName,
+                note: responseData[key].note,
                 description: responseData[key].description,
                 hourlyRate: responseData[key].hourlyRate,
                 areas: responseData[key].areas

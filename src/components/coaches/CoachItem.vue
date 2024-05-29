@@ -1,6 +1,6 @@
 <script>
 export default {
-  props: ['id', 'firstName', 'lastName', 'rate', 'areas'],
+  props: ['id', 'firstName', 'lastName', 'note', 'rate', 'areas'],
   computed: {
     fullName() {
       return this.firstName + ' ' + this.lastName;
@@ -16,7 +16,7 @@ export default {
 </script>
 <template>
   <li>
-    <h3>{{ fullName }}</h3>
+    <h3>{{ fullName }} {{ note }}</h3>
     <div class="rate-and-badges">
       <h4>€{{ rate }}/hour</h4>
       <div>

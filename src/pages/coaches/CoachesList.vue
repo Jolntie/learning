@@ -84,7 +84,7 @@ export default {
                 </div>
                 <ul v-else-if="hasCoaches">
                     <coach-item style="width: 38rem;" v-for="coach in filteredCoaches" :key="coach.id" :id="coach.id"
-                        :first-name="coach.firstName" :last-name="coach.lastName" :rate="coach.hourlyRate"
+                        :first-name="coach.firstName" :last-name="coach.lastName" :note="coach.note" :rate="coach.hourlyRate"
                         :areas="coach.areas">
                     </coach-item>
                 </ul>

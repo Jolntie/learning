@@ -11,6 +11,7 @@ export default {
         val: '',
         isValid: true
       },
+      note: '',
       description: {
         val: '',
         isValid: true
@@ -61,9 +62,14 @@ export default {
       if (!this.formIsValid)
         return
 
+      if (this.note !== '') {
+        this.note = `(${this.note})`
+      }
+
       const formData = {
         first: this.firstname.val,
         last: this.lastname.val,
+        note: this.note,
         desc: this.description.val,
         rate: this.rate.val,
         areas: this.areas.val
@@ -79,7 +85,7 @@ export default {
 
     <div class="form-control" :class="{ invalid: !firstname.isValid }">
       <div class="label-container">
-        <label for="firstname">Firstname:</label>
+        <label for="firstname">*Firstname:</label>
         <p v-if="!firstname.isValid">Firstname must not be empty.</p>
       </div>
       <input type="text" id="firstname" v-model.trim="firstname.val" @blur="checkFormValidity('firstname')" />
@@ -87,23 +93,29 @@ export default {
 
     <div class="form-control" :class="{ invalid: !lastname.isValid }">
       <div class="label-container">
-        <label for="lastname">LastName:</label>
+        <label for="lastname">*LastName:</label>
         <p v-if="!lastname.isValid">Lastname must not be empty.</p>
       </div>
       <input type="text" id="lastname" v-model.trim="lastname.val" @blur="checkFormValidity('lastname')" />
     </div>
 
+    <div class="form-control">
+      <label for="note">Note:</label>
+      <input type="text" id="note" v-model="note" />
+    </div>
+
     <div class="form-control" :class="{ invalid: !description.isValid }">
       <div class="label-container">
-        <label for="description">Description:</label>
+        <label for="description">*Description:</label>
         <p v-if="!description.isValid">Description must not be empty.</p>
       </div>
-      <textarea id="description" rows="5" v-model.trim="description.val" @blur="checkFormValidity('description')"></textarea>
+      <textarea id="description" rows="5" v-model.trim="description.val"
+        @blur="checkFormValidity('description')"></textarea>
     </div>
 
     <div class="form-control" :class="{ invalid: !rate.isValid }">
       <div class="label-container">
-        <label for="rate">Hourly Rate:</label>
+        <label for="rate">*Hourly Rate:</label>
         <p v-if="!rate.isValid">Rate must be greater than 0.</p>
       </div>
       <input type="number" id="rate" v-model.number="rate.val" @blur="checkFormValidity('rate')" />
@@ -111,7 +123,7 @@ export default {
 
     <div class="form-control" :class="{ invalid: !areas.isValid }">
       <div class="label-container">
-        <h3>Areas of Expertise:</h3>
+        <h3>*Areas of Expertise:</h3>
         <p v-if="!areas.isValid">At least one expertise must be selected.</p>
       </div>
       <div>

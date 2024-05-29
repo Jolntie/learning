@@ -10,11 +10,14 @@ export default {
         fullName() {
             return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName;
         },
-        areas() {
-            return this.selectedCoach.areas;
+        note() {
+            return this.selectedCoach.note;
         },
         rate() {
             return this.selectedCoach.hourlyRate;
+        },
+        areas() {
+            return this.selectedCoach.areas;
         },
         description() {
             return this.selectedCoach.description;
@@ -35,7 +38,7 @@ export default {
     <div>
         <section>
             <base-card>
-                <h2>{{ fullName }}</h2>
+                <h2>{{ fullName }} {{ note }}</h2>
                 <div class="rate-and-badges">
                     <h3>€{{ rate }}/hour</h3>
                     <div>
