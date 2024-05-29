@@ -1,31 +1,33 @@
 <script>
 export default {
-    props: ['id', 'firstName', 'lastName', 'rate', 'areas'],
-    computed: {
-        fullName() {
-            return this.firstName + ' ' + this.lastName;
-        },
-        coachContactLink() {
-            return this.$route.path + '/' + this.id + '/contact';
-        },
-        coachDetailsLink() {
-            return this.$route.path + '/' + this.id;
-        }
+  props: ['id', 'firstName', 'lastName', 'rate', 'areas'],
+  computed: {
+    fullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
+    coachContactLink() {
+      return this.$route.path + '/' + this.id + '/contact';
+    },
+    coachDetailsLink() {
+      return this.$route.path + '/' + this.id;
     }
+  }
 };
 </script>
 <template>
-    <li>
-        <h3>{{ fullName }}</h3>
-        <h4>${{ rate }}/hour</h4>
-        <div>
-            <base-badge v-for="area in areas" :key="area" :type="area"></base-badge>
-        </div>
-        <div class="actions">
-            <base-button mode="outline" link :to="coachContactLink">Contact</base-button>
-            <base-button link :to="coachDetailsLink">View Details</base-button>
-        </div>
-    </li>
+  <li>
+    <h3>{{ fullName }}</h3>
+    <div class="rate-and-badges">
+      <h4>€{{ rate }}/hour</h4>
+      <div>
+        <base-badge v-for="area in areas" :key="area" :type="area"></base-badge>
+      </div>
+    </div>
+    <div class="actions">
+      <base-button mode="outline" link :to="coachContactLink">Contact</base-button>
+      <base-button link :to="coachDetailsLink">View Details</base-button>
+    </div>
+  </li>
 </template>
 
 <style scoped>
@@ -52,5 +54,11 @@ div {
 .actions {
   display: flex;
   justify-content: flex-end;
+}
+
+.rate-and-badges {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 </style>
