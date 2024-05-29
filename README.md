@@ -1,10 +1,10 @@
 # Project - Vue App
 #### Eerste keer opstarten:
 - Open de powershell en voer de code 'npm install' uit.
-- In de powershell voer de code 'npm run serve' uit.
+- In de powershell voer de code 'npm run dev' uit.
 
 #### Opstarten: 
-- Open de powershell en voer de code 'npm run serve' uit.
+- Open de powershell en voer de code 'npm run dev' uit.
 
 #### Applicatie builden:
 - Voer 'npm run build' uit in de powershell.

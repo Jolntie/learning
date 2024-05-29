@@ -20,7 +20,9 @@ export default {
             return this.selectedCoach.description;
         },
         contactLink() {
-            return this.$route.path + '/contact';
+            if (!this.$route.path.includes('/contact'))
+                return this.$route.path + '/contact';
+            return this.$route.path;
         }
     },
     created() {
@@ -34,7 +36,18 @@ export default {
         <section>
             <base-card>
                 <h2>{{ fullName }}</h2>
-                <h3>${{ rate }}/hour</h3>
+                <div class="rate-and-badges">
+                    <h3>€{{ rate }}/hour</h3>
+                    <div>
+                        <base-badge v-for="area in selectedCoach.areas" :key="area" :type="area"></base-badge>
+                    </div>
+                </div>
+            </base-card>
+        </section>
+        <section>
+            <base-card>
+                <h2>Description</h2>
+                <p>{{ description }}</p>
             </base-card>
         </section>
         <section>
@@ -46,17 +59,17 @@ export default {
                 <router-view></router-view>
             </base-card>
         </section>
-        <section>
-            <base-card>
-                <base-badge v-for="area in selectedCoach.areas" :key="area" :type="area"></base-badge>
-                <p>{{ description }}</p>
-            </base-card>
-        </section>
     </div>
 </template>
 
 <style scoped>
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rate-and-badges {
     display: flex;
     justify-content: space-between;
     align-items: center;
