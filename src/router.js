@@ -14,6 +14,7 @@ const router = createRouter({
         { path: '/register', component: () => import("./pages/coaches/CoachRegistration.vue"), meta: { requiresAuth: true } },
         { path: '/requests', component: () => import("./pages/requests/RequestsRecieved.vue"), meta: { requiresAuth: true } },
         { path: '/auth', component: () => import("./pages/auth/UserAuth.vue"), meta: { requiresUnauth: true } },
+        { path: '/secret', component: () => import("./pages/secret/Main.vue") },
         { path: '/:notFound(.*)', component: () => import("./pages/NotFound.vue") },
     ],
 });
