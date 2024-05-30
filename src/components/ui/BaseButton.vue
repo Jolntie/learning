@@ -54,8 +54,12 @@ button:active {
 
 .flat {
   background-color: transparent;
-  color: #55008df4;
+  /* color: #55008df4; */
   border: none;
+}
+
+.flat:hover {
+  background-color: #3b0062f4;
 }
 
 .outline {

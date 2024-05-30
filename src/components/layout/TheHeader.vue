@@ -35,7 +35,7 @@ export default {
         <h1><router-link to="/">Find a Coach</router-link></h1>
       </div>
       <div style="justify-content: center;">
-        <h1>{{ partialEmail }}</h1>
+        <h1>Welcome, {{ partialEmail }}</h1>
       </div>
       <div style="justify-content: right;">
         <ul>
@@ -60,7 +60,7 @@ div {
 header {
   width: 100%;
   height: 5rem;
-  background-color: #55008df4;
+  background: linear-gradient(to right, #3801aff4, #55008df4);
   display: flex;
   justify-content: center;
   align-items: center;

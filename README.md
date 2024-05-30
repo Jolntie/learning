@@ -1,4 +1,6 @@
 # Project - Vue App
+## Linkjes 
+### website: https://goals-7455a.firebaseapp.com
 ### Eerste keer opstarten:
 - Open de powershell en voer de code 'npm install' uit.
 - In de powershell voer de code 'npm run dev' uit.
@@ -36,8 +38,8 @@
 1. Coaches toegang kunnen geven tot secret pagina via database.
 1. Toegang geven via admin account. - overzicht pagina met elke coach en zoekfunctie?
 1. Beveiliging op de secret pagina. - via router.
-1. Hoofdstijl defineren.
-1. Inlog pagina naar hoofdstijl maken.
-1. Coaches pagina naar hoofdstijl maken.
-1. Requests pagina naar hoofdstijl maken.
 1. Bepalen wat er op de secret pagina komt. - [Nieuwe navigatie bar, notities om met iedereen die secret toegang heeft te delen]
+1. ~~Hoofdstijl defineren.~~
+1. ~~Inlog pagina naar hoofdstijl maken.~~
+1. ~~Coaches pagina naar hoofdstijl maken.~~
+1. ~~Requests pagina naar hoofdstijl maken.~~
