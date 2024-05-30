@@ -1,17 +1,19 @@
 <template>
-    <div class="background">
-        <h1>Welcome</h1>
+    <div>
+        <base-card class="base-card">
+            <h1>Welcome</h1>
+        </base-card>
     </div>
 </template>
 
 <style scoped>
-.background {
-    background-color: gray;
-    width: 100%;
-    height: 100%;
+.base-card {
+    background-color: rgb(67, 67, 67);
 }
 
 h1 {
-    color: red;
+    color: orange;
+    display: flex;
+    justify-content: center;
 }
 </style>

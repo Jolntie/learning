@@ -2,33 +2,35 @@
 import TheHeader from './components/layout/TheHeader.vue'
 
 export default {
-    components: {
-        TheHeader
-    },
-    computed: {
-      didAutoLogout() {
-        return this.$store.getters.didAutoLogout;
-      }
-    },
-    created() {
-      this.$store.dispatch('tryAutoLogin');
-    },
-    watch: {
-      didAutoLogout(currentValue, oldValue) {
-        if (currentValue && currentValue !== oldValue) {
-          this.$router.replace('/coaches');
-        }
+  components: {
+    TheHeader
+  },
+  computed: {
+    didAutoLogout() {
+      return this.$store.getters.didAutoLogout;
+    }
+  },
+  created() {
+    this.$store.dispatch('tryAutoLogin');
+  },
+  watch: {
+    didAutoLogout(currentValue, oldValue) {
+      if (currentValue && currentValue !== oldValue) {
+        this.$router.replace('/coaches');
       }
     }
+  }
 }
 </script>
 <template>
+  <div>
     <the-header></the-header>
     <router-view v-slot="slotProps">
       <transition name="route" mode="out-in">
         <component :is="slotProps.Component"></component>
       </transition>
     </router-view>
+  </div>
 </template>
 
 <style>
@@ -44,6 +46,7 @@ html {
 
 body {
   margin: 0;
+  background-color: rgb(171, 171, 171);
 }
 
 .route-enter-from {

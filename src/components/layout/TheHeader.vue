@@ -31,24 +31,36 @@ export default {
 <template>
   <header>
     <nav>
-      <h1><router-link to="/">Find a Coach</router-link></h1>
-      <h1>{{ partialEmail }}</h1>
-      <ul>
-        <li v-if="isAdmin"><router-link to="/secret">Secret</router-link></li>
-        <li><router-link to="/coaches">All Coaches</router-link></li>
-        <li v-if="isCoach"><router-link to="/requests">Requests</router-link></li>
-        <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
-        <li v-else><base-button @click="logout">Logout</base-button></li>
-      </ul>
+      <div>
+        <h1><router-link to="/">Find a Coach</router-link></h1>
+      </div>
+      <div style="justify-content: center;">
+        <h1>{{ partialEmail }}</h1>
+      </div>
+      <div style="justify-content: right;">
+        <ul>
+          <li v-if="isAdmin"><router-link to="/secret">Secret</router-link></li>
+          <li style="min-width: 8.4rem;"><router-link to="/coaches">All Coaches</router-link></li>
+          <li v-if="isCoach"><router-link to="/requests">Requests</router-link></li>
+          <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
+          <li v-else><base-button @click="logout">Logout</base-button></li>
+        </ul>
+      </div>
     </nav>
   </header>
 </template>
 
 <style scoped>
+div {
+  width: 34%;
+  display: flex;
+  align-content: center;
+}
+
 header {
   width: 100%;
   height: 5rem;
-  background-color: #3d008df4;
+  background-color: #55008df4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +71,7 @@ header {
 
 header a {
   text-decoration: none;
-  color: #f391e3;
+  color: white;
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border: 1px solid transparent;
@@ -68,12 +80,13 @@ header a {
 a:active,
 a:hover,
 a.router-link-active {
-  border: 1px solid #f391e3;
+  border: 1px solid white;
+  border-radius: 0.5rem;
 }
 
 h1 {
   margin: 0;
-  color: gray;
+  color: rgb(171, 171, 171);
 }
 
 h1 a {
@@ -87,15 +100,14 @@ h1 a.router-link-active {
   border-color: transparent;
 }
 
-header nav {
+nav {
   width: 90%;
   margin: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-header ul {
+ul {
   list-style: none;
   margin: 0;
   padding: 0;

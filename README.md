@@ -30,3 +30,14 @@
 4. logt je automatisch na een bepaalde periode van inactieviteit uit.
 5. maakt de requests pagina niet beschikbaar voor degene die geen coach zijn.
 6. geeft een 404 error pagina weer bij een niet erkende url route.
+
+### TODO's
+1. Secret pagina.
+1. Coaches toegang kunnen geven tot secret pagina via database.
+1. Toegang geven via admin account. - overzicht pagina met elke coach en zoekfunctie?
+1. Beveiliging op de secret pagina. - via router.
+1. Hoofdstijl defineren.
+1. Inlog pagina naar hoofdstijl maken.
+1. Coaches pagina naar hoofdstijl maken.
+1. Requests pagina naar hoofdstijl maken.
+1. Bepalen wat er op de secret pagina komt. - [Nieuwe navigatie bar, notities om met iedereen die secret toegang heeft te delen]
