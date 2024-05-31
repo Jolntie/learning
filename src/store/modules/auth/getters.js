@@ -11,6 +11,10 @@ export default {
     isAuthenticated(state) {
         return !!state.token;
     },
+    isAdmin(_state, _getters, _rootState, rootGetters) {
+        const userEmail = rootGetters.userEmail;
+        return userEmail === 'admin@email.com';
+    },
     didAutoLogout(state) {
         return state.didAutoLogout;
     }

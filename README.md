@@ -39,10 +39,10 @@
 1. Admin pagina.
 1. Coaches toegang kunnen geven tot admin pagina via database.
 1. Toegang geven via admin account. - overzicht pagina met elke coach en zoekfunctie?
-1. Beveiliging op de admin pagina. - via router.
 1. Bepalen wat er op de admin pagina komt. - [Nieuwe navigatie bar, notities om met iedereen die admin toegang heeft te delen]
-1. Admin kan filteren op note's.
+1. Admin kan filteren op gebruikers/admins.
 1. Admin kan andere admin maken.
+1. ~~Beveiliging op de admin pagina. - via router.~~
 1. ~~Betere validatie op het registreren van een coach.~~
 1. ~~Custom expertises kunnen worden gezet.~~
 1. ~~Je kan een note toevoegen die achter je naam word getoond.~~

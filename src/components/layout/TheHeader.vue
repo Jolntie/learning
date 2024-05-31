@@ -14,7 +14,7 @@ export default {
       const email = this.$store.getters.userEmail;
       if (email) {
         const emailParts = email.split('@');
-        return emailParts[0];
+        return  `, ${emailParts[0]}`;
       } else {
         return '';
       }
@@ -35,11 +35,11 @@ export default {
         <h1><router-link to="/">Find a Coach</router-link></h1>
       </div>
       <div style="justify-content: center;">
-        <h1>Welcome, {{ partialEmail }}</h1>
+        <h1>Welcome{{ partialEmail }}</h1>
       </div>
       <div style="justify-content: right;">
         <ul>
-          <li v-if="isAdmin"><router-link to="/admin">Secret</router-link></li>
+          <li v-if="isAdmin"><router-link to="/admin">Admin</router-link></li>
           <li style="min-width: 8.4rem;"><router-link to="/coaches">All Coaches</router-link></li>
           <li v-if="isCoach"><router-link to="/requests">Requests</router-link></li>
           <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
