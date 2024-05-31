@@ -22,7 +22,8 @@ export default {
       },
       areas: {
         val: [],
-        isValid: true
+        isValid: true,
+        isAsian: false
       },
       formIsValid: true
     };
@@ -39,6 +40,12 @@ export default {
         this.firstname.isValid = this.firstname.val !== '';
       } else if (wich === 'lastname') {
         this.lastname.isValid = this.lastname.val !== '';
+      } else if (wich === 'note') {
+        if (this.note.toLowerCase().includes('asian')) {
+          this.areas.isAsian = true;
+        } else {
+          this.areas.isAsian = false;
+        }
       } else if (wich === 'description') {
         this.description.isValid = this.description.val !== '';
       } else if (wich === 'rate') {
@@ -101,7 +108,7 @@ export default {
 
     <div class="form-control">
       <label for="note">Note:</label>
-      <input type="text" id="note" v-model="note" />
+      <input type="text" id="note" v-model="note" @blur="checkFormValidity('note')" />
     </div>
 
     <div class="form-control" :class="{ invalid: !description.isValid }">
@@ -137,6 +144,10 @@ export default {
       <div>
         <input type="checkbox" id="career" value="career" v-model="areas.val" @blur="checkFormValidity('areas')">
         <label for="career">Career Advisory</label>
+      </div>
+      <div v-if="areas.isAsian">
+        <input type="checkbox" id="docter" value="docter" v-model="areas.val" @blur="checkFormValidity('areas')">
+        <label for="docter">Docter</label>
       </div>
     </div>
 

@@ -39,4 +39,9 @@ export default {
   background-color: #8d006e;
   color: white;
 }
+
+.docter {
+  background-color: #008d7dfc;
+  color: white;
+}
 </style>

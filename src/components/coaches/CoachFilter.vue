@@ -6,7 +6,8 @@ export default {
             filters: {
                 frontend: true,
                 backend: true,
-                career: true
+                career: true,
+                other: true
             }
         };
     },
@@ -19,6 +20,7 @@ export default {
                 [inputId]: isActive
             };
             this.filters = updatedFilters;
+            console.log(updatedFilters)
             this.$emit('change-filter', updatedFilters);
         }
     }
@@ -38,6 +40,10 @@ export default {
         <span class="filter-option">
             <input type="checkbox" id="career" checked @change="setFilter" />
             <label for="career">Career</label>
+        </span>
+        <span class="filter-option">
+            <input type="checkbox" id="other" checked @change="setFilter" />
+            <label for="other">Other</label>
         </span>
     </base-card>
 </template>

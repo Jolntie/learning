@@ -14,7 +14,8 @@ export default {
             activeFilters: {
                 frontend: true,
                 backend: true,
-                career: true
+                career: true,
+                other: true
             }
         };
     },
@@ -31,8 +32,13 @@ export default {
                     return true;
                 if (this.activeFilters.career && coach.areas.includes('career'))
                     return true;
+                if (this.activeFilters.other
+                    && !coach.areas.includes('frontend')
+                    && !coach.areas.includes('backend')
+                    && !coach.areas.includes('career'))
+                    return true;
 
-                return false
+                return false;
             });
         },
         hasCoaches() {
@@ -76,7 +82,8 @@ export default {
             <base-card :style="{ width: filteredCoaches.length >= 6 ? '79rem' : '' }">
                 <div class="controls">
                     <base-button mode="outline" @click="loadCoaches(true)">Refresh</base-button>
-                    <base-button link to="/auth?redirect=register" v-if="!isLoggedIn">Login to register as coach</base-button>
+                    <base-button link to="/auth?redirect=register" v-if="!isLoggedIn">Login to register as
+                        coach</base-button>
                     <base-button v-else-if="!isCoach && !isLoading" link to="/register">Register as Coach</base-button>
                 </div>
                 <div v-if="isLoading">
@@ -84,8 +91,8 @@ export default {
                 </div>
                 <ul v-else-if="hasCoaches">
                     <coach-item style="width: 38rem;" v-for="coach in filteredCoaches" :key="coach.id" :id="coach.id"
-                        :first-name="coach.firstName" :last-name="coach.lastName" :note="coach.note" :rate="coach.hourlyRate"
-                        :areas="coach.areas">
+                        :first-name="coach.firstName" :last-name="coach.lastName" :note="coach.note"
+                        :rate="coach.hourlyRate" :areas="coach.areas">
                     </coach-item>
                 </ul>
                 <h3 v-else>No coaches found.</h3>
