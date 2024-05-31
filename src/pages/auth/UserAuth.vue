@@ -41,14 +41,8 @@ export default {
                     password: this.password
                 });
 
-                if (this.email === 'admin@email.com' && this.password === 'wachtwoord') {
-                    const redirectUrl = `/${(this.$route.query.redirect || 'secret')}`;
-                    this.$router.replace(redirectUrl);
-                } else {
-                    const redirectUrl = `/${(this.$route.query.redirect || 'coaches')}`;
-                    this.$router.replace(redirectUrl);
-                }
-                
+                const redirectUrl = `/${(this.$route.query.redirect || 'coaches')}`;
+                this.$router.replace(redirectUrl);
             } catch (error) {
                 this.error = error || 'Failed to authenticate.';
             }

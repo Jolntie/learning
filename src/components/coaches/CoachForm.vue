@@ -5,63 +5,98 @@ export default {
     return {
       firstname: {
         val: '',
-        isValid: true
+        invalidMessage: null
       },
       lastname: {
         val: '',
-        isValid: true
+        invalidMessage: null
       },
-      note: '',
+      note: {
+        val: '',
+        invalidMessage: null
+      },
       description: {
         val: '',
-        isValid: true
+        invalidMessage: null
       },
       rate: {
         val: null,
-        isValid: true
+        invalidMessage: null
       },
       areas: {
         val: [],
-        isValid: true,
-        isAsian: false
+        otherVal: '',
+        isOtherChecked: false,
+        invalidMessage: null
       },
       formIsValid: true
     };
   },
   methods: {
     checkFormValidity(wich) {
+      const specialCharactersRegex = /[^a-zA-Z0-9 ]/;
+      const validateFirstname = () => {
+        if (this.firstname.val === '') { this.firstname.invalidMessage = 'Firstname must not be empty.' }
+        else if (this.firstname.val.length > 20) { this.firstname.invalidMessage = 'Firstname must not be longer then 20 characters long.' }
+        else if (specialCharactersRegex.test(this.firstname.val)) { this.firstname.invalidMessage = 'Firstname must not have special characters.' }
+        else { this.firstname.invalidMessage = null }
+      };
+      const validateLastname = () => {
+        if (this.lastname.val === '') { this.lastname.invalidMessage = 'Lastname must not be empty.' }
+        else if (this.lastname.val.length > 20) { this.lastname.invalidMessage = 'Lastname must not be longer then 20 characters long.' }
+        else if (specialCharactersRegex.test(this.lastname.val)) { this.lastname.invalidMessage = 'Lastname must not have special characters.' }
+        else { this.lastname.invalidMessage = null }
+      };
+      const validateNote = () => {
+        if (this.note.val.length > 20) { this.note.invalidMessage = 'Note may not be longer then 20 characters long.' }
+        else if (specialCharactersRegex.test(this.note.val)) { this.note.invalidMessage = 'Note must not have special characters.' }
+        else { this.note.invalidMessage = null }
+      };
+      const validateDescription = () => {
+        if (this.description.val === '') { this.description.invalidMessage = 'Description may not be empty.' }
+        else { this.description.invalidMessage = null }
+      };
+      const validateRate = () => {
+        if (this.rate.val <= 0) { this.rate.invalidMessage = 'Rate must be greater than 0.' }
+        else if (this.rate.val > 1000) { this.rate.invalidMessage = 'You may not exceed €1000/hour.' }
+        else { this.rate.invalidMessage = null }
+      };
+      const validateAreas = () => {
+        if (this.areas.val.length === 0 && !this.areas.isOtherChecked) { this.areas.invalidMessage = 'At least one expertise must be selected.' }
+        else if (this.areas.otherVal === '' && this.areas.isOtherChecked) { this.areas.invalidMessage = 'Other field may not be empty.' }
+        else { this.areas.invalidMessage = null }
+      };
+
       if (wich === undefined) {
-        this.firstname.isValid = this.firstname.val !== '';
-        this.lastname.isValid = this.lastname.val !== '';
-        this.description.isValid = this.description.val !== '';
-        this.rate.isValid = this.rate.val && this.rate.val > 0;
-        this.areas.isValid = this.areas.val.length !== 0;
+        validateFirstname();
+        validateLastname();
+        validateNote();
+        validateDescription();
+        validateRate();
+        validateAreas();
       } else if (wich === 'firstname') {
-        this.firstname.isValid = this.firstname.val !== '';
+        validateFirstname();
       } else if (wich === 'lastname') {
-        this.lastname.isValid = this.lastname.val !== '';
+        validateLastname();
       } else if (wich === 'note') {
-        if (this.note.toLowerCase().includes('asian')) {
-          this.areas.isAsian = true;
-        } else {
-          this.areas.isAsian = false;
-        }
+        validateNote();
       } else if (wich === 'description') {
-        this.description.isValid = this.description.val !== '';
+        validateDescription();
       } else if (wich === 'rate') {
-        this.rate.isValid = this.rate.val && this.rate.val > 0;
+        validateRate();
       } else if (wich === 'areas') {
-        this.areas.isValid = this.areas.val.length !== 0;
+        validateAreas();
       }
     },
     validateForm() {
       this.checkFormValidity()
 
-      this.formIsValid = this.firstname.isValid &&
-        this.lastname.isValid &&
-        this.description.isValid &&
-        this.rate.isValid &&
-        this.areas.isValid;
+      this.formIsValid = !this.firstname.invalidMessage
+        && !this.lastname.invalidMessage
+        && !this.note.invalidMessage
+        && !this.description.invalidMessage
+        && !this.rate.invalidMessage
+        && !this.areas.invalidMessage;
     },
     submitForm() {
       this.validateForm()
@@ -73,6 +108,9 @@ export default {
         this.note = `(${this.note})`
       }
 
+      if (this.areas.isOtherChecked && this.areas.otherVal !== '')
+        this.areas.val.push(this.areas.otherVal);
+
       const formData = {
         first: this.firstname.val,
         last: this.lastname.val,
@@ -82,7 +120,7 @@ export default {
         areas: this.areas.val
       }
 
-      this.$emit('save-data', formData)
+      this.$emit('save-data', formData);
     }
   }
 };
@@ -90,48 +128,50 @@ export default {
 <template>
   <form @submit.prevent="submitForm">
 
-    <div class="form-control" :class="{ invalid: !firstname.isValid }">
+    <div class="form-control" :class="{ invalid: firstname.invalidMessage }">
       <div class="label-container">
         <label for="firstname">*Firstname:</label>
-        <p v-if="!firstname.isValid">Firstname must not be empty.</p>
+        <p v-if="firstname.invalidMessage">{{ firstname.invalidMessage }}</p>
       </div>
       <input type="text" id="firstname" v-model.trim="firstname.val" @blur="checkFormValidity('firstname')" />
     </div>
 
-    <div class="form-control" :class="{ invalid: !lastname.isValid }">
+    <div class="form-control" :class="{ invalid: lastname.invalidMessage }">
       <div class="label-container">
         <label for="lastname">*LastName:</label>
-        <p v-if="!lastname.isValid">Lastname must not be empty.</p>
+        <p v-if="lastname.invalidMessage">{{ lastname.invalidMessage }}</p>
       </div>
       <input type="text" id="lastname" v-model.trim="lastname.val" @blur="checkFormValidity('lastname')" />
     </div>
 
-    <div class="form-control">
-      <label for="note">Note:</label>
-      <input type="text" id="note" v-model="note" @blur="checkFormValidity('note')" />
+    <div class="form-control" :class="{ invalid: note.invalidMessage }">
+      <div class="label-container">
+        <label for="note">Note:</label>
+        <p v-if="note.invalidMessage">{{ note.invalidMessage }}</p>
+      </div>
+      <input type="text" id="note" v-model="note.val" @blur="checkFormValidity('note')" />
     </div>
 
-    <div class="form-control" :class="{ invalid: !description.isValid }">
+    <div class="form-control" :class="{ invalid: description.invalidMessage }">
       <div class="label-container">
         <label for="description">*Description:</label>
-        <p v-if="!description.isValid">Description must not be empty.</p>
+        <p v-if="description.invalidMessage">{{ description.invalidMessage }}</p>
       </div>
       <textarea id="description" rows="5" v-model.trim="description.val"
         @blur="checkFormValidity('description')"></textarea>
     </div>
 
-    <div class="form-control" :class="{ invalid: !rate.isValid }">
+    <div class="form-control" :class="{ invalid: rate.invalidMessage }">
       <div class="label-container">
         <label for="rate">*Hourly Rate:</label>
-        <p v-if="!rate.isValid">Rate must be greater than 0.</p>
+        <p v-if="rate.invalidMessage">{{ rate.invalidMessage }}</p>
       </div>
       <input type="number" id="rate" v-model.number="rate.val" @blur="checkFormValidity('rate')" />
     </div>
-
-    <div class="form-control" :class="{ invalid: !areas.isValid }">
+    <div class="form-control" :class="{ invalid: areas.invalidMessage }">
       <div class="label-container">
         <h3>*Areas of Expertise:</h3>
-        <p v-if="!areas.isValid">At least one expertise must be selected.</p>
+        <p v-if="areas.invalidMessage">{{ areas.invalidMessage }}</p>
       </div>
       <div>
         <input type="checkbox" id="frontend" value="frontend" v-model="areas.val" @blur="checkFormValidity('areas')">
@@ -145,9 +185,11 @@ export default {
         <input type="checkbox" id="career" value="career" v-model="areas.val" @blur="checkFormValidity('areas')">
         <label for="career">Career Advisory</label>
       </div>
-      <div v-if="areas.isAsian">
-        <input type="checkbox" id="docter" value="docter" v-model="areas.val" @blur="checkFormValidity('areas')">
-        <label for="docter">Docter</label>
+      <div id="app">
+        <input type="checkbox" id="other" v-model="areas.isOtherChecked">
+        <label for="other">Other:</label>
+        <input type="text" id="other-text" v-model.trim="areas.otherVal" v-if="areas.isOtherChecked"
+          @blur="checkFormValidity('areas')">
       </div>
     </div>
 

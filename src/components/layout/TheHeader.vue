@@ -39,7 +39,7 @@ export default {
       </div>
       <div style="justify-content: right;">
         <ul>
-          <li v-if="isAdmin"><router-link to="/secret">Secret</router-link></li>
+          <li v-if="isAdmin"><router-link to="/admin">Secret</router-link></li>
           <li style="min-width: 8.4rem;"><router-link to="/coaches">All Coaches</router-link></li>
           <li v-if="isCoach"><router-link to="/requests">Requests</router-link></li>
           <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>

@@ -36,13 +36,16 @@
 6. geeft een 404 error pagina weer bij een niet erkende url route.
 
 ### TODO's
-1. Secret pagina.
-1. Coaches toegang kunnen geven tot secret pagina via database.
+1. Admin pagina.
+1. Coaches toegang kunnen geven tot admin pagina via database.
 1. Toegang geven via admin account. - overzicht pagina met elke coach en zoekfunctie?
-1. Beveiliging op de secret pagina. - via router.
-1. Bepalen wat er op de secret pagina komt. - [Nieuwe navigatie bar, notities om met iedereen die secret toegang heeft te delen]
+1. Beveiliging op de admin pagina. - via router.
+1. Bepalen wat er op de admin pagina komt. - [Nieuwe navigatie bar, notities om met iedereen die admin toegang heeft te delen]
 1. Admin kan filteren op note's.
-1. ~~Bij invoer note's 'asian' verborgen expertise 'dokter'.~~
+1. Admin kan andere admin maken.
+1. ~~Betere validatie op het registreren van een coach.~~
+1. ~~Custom expertises kunnen worden gezet.~~
+1. ~~Je kan een note toevoegen die achter je naam word getoond.~~
 1. ~~Hoofdstijl defineren.~~
 1. ~~Inlog pagina naar hoofdstijl maken.~~
 1. ~~Coaches pagina naar hoofdstijl maken.~~
