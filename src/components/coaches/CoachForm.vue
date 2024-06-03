@@ -133,7 +133,7 @@ export default {
         <label for="firstname">*Firstname:</label>
         <p v-if="firstname.invalidMessage">{{ firstname.invalidMessage }}</p>
       </div>
-      <input type="text" id="firstname" v-model.trim="firstname.val" @blur="checkFormValidity('firstname')" />
+      <input type="text" id="firstname" v-model.trim="firstname.val" @blur="checkFormValidity('firstname')" placeholder="John" />
     </div>
 
     <div class="form-control" :class="{ invalid: lastname.invalidMessage }">
@@ -141,7 +141,7 @@ export default {
         <label for="lastname">*LastName:</label>
         <p v-if="lastname.invalidMessage">{{ lastname.invalidMessage }}</p>
       </div>
-      <input type="text" id="lastname" v-model.trim="lastname.val" @blur="checkFormValidity('lastname')" />
+      <input type="text" id="lastname" v-model.trim="lastname.val" @blur="checkFormValidity('lastname')" placeholder="Doe" />
     </div>
 
     <div class="form-control" :class="{ invalid: note.invalidMessage }">
@@ -149,7 +149,7 @@ export default {
         <label for="note">Note:</label>
         <p v-if="note.invalidMessage">{{ note.invalidMessage }}</p>
       </div>
-      <input type="text" id="note" v-model="note.val" @blur="checkFormValidity('note')" />
+      <input type="text" id="note" v-model="note.val" @blur="checkFormValidity('note')" placeholder="Stagair" />
     </div>
 
     <div class="form-control" :class="{ invalid: description.invalidMessage }">
@@ -158,7 +158,7 @@ export default {
         <p v-if="description.invalidMessage">{{ description.invalidMessage }}</p>
       </div>
       <textarea id="description" rows="5" v-model.trim="description.val"
-        @blur="checkFormValidity('description')"></textarea>
+        @blur="checkFormValidity('description')" placeholder="Ik ben John Doe en doe al 23 jaar aan software development." />
     </div>
 
     <div class="form-control" :class="{ invalid: rate.invalidMessage }">
@@ -166,7 +166,7 @@ export default {
         <label for="rate">*Hourly Rate:</label>
         <p v-if="rate.invalidMessage">{{ rate.invalidMessage }}</p>
       </div>
-      <input type="number" id="rate" v-model.number="rate.val" @blur="checkFormValidity('rate')" />
+      <input type="number" id="rate" v-model.number="rate.val" @blur="checkFormValidity('rate')" placeholder="20" />
     </div>
     <div class="form-control" :class="{ invalid: areas.invalidMessage }">
       <div class="label-container">

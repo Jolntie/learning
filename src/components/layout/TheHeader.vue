@@ -4,6 +4,9 @@ export default {
     isAdmin() {
       return this.$store.getters.isAdmin;
     },
+    isAdminPage() {
+      return this.$route.path.startsWith('/admin');
+    },
     isCoach() {
       return this.$store.getters.isCoach;
     },
@@ -53,14 +56,18 @@ export default {
       </div>
     </nav>
   </header>
-  <header class="admin" v-if="isAdmin">
+  <transition name="route" mode="out-in">
+  <header class="admin" v-if="isAdmin && isAdminPage">
+
     <nav>
       <div></div>
-        <ul>
-          <li><router-link to="/admin/all">All Admins</router-link></li>
-        </ul>
+      <ul>
+        <li><router-link to="/admin/all">All Admins</router-link></li>
+      </ul>
     </nav>
+
   </header>
+  </transition>
 </template>
 
 <style scoped>
@@ -138,5 +145,25 @@ ul {
 
 li {
   margin: 0 0.5rem;
+}
+
+.route-leave-to,
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.route-leave-from,
+.route-enter-to {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
