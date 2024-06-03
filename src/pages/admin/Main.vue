@@ -1,7 +1,29 @@
+<script>
+export default {
+    data() {
+        return {
+            data: ''
+        };
+    },
+    methods: {
+        registerAdmin() {
+            const formData = {
+                email: this.data
+            }
+
+            this.$store.dispatch('setAdmin', formData);
+        }
+    }
+}
+</script>
 <template>
     <div>
         <base-card class="base-card">
             <h1>Welcome</h1>
+            <form @submit.prevent="registerAdmin">
+                <input type="email" v-model.trim="data">
+                <base-button>PROBEER</base-button>
+            </form>
         </base-card>
     </div>
 </template>

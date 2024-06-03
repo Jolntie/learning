@@ -2,7 +2,7 @@
 export default {
   computed: {
     isAdmin() {
-      return this.$store.getters['coaches/isAdmin']
+      return this.$store.getters.userEmail === 'admin@email.com'
     },
     isCoach() {
       return this.$store.getters['coaches/isCoach'];
