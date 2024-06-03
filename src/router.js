@@ -14,7 +14,7 @@ const router = createRouter({
         { path: '/register', component: () => import("./pages/coaches/CoachRegistration.vue"), meta: { requiresAuth: true } },
         { path: '/requests', component: () => import("./pages/requests/RequestsRecieved.vue"), meta: { requiresAuth: true } },
         { path: '/auth', component: () => import("./pages/auth/UserAuth.vue"), meta: { requiresUnauth: true } },
-        { path: '/admin', component: () => import("./pages/admin/Main.vue"), meta: { requiresAuth: true } },
+        { path: '/admin', component: () => import("./pages/admin/Main.vue"), meta: { requiresAdmin: true } },
         { path: '/:notFound(.*)', component: () => import("./pages/NotFound.vue") },
     ],
 });
@@ -24,7 +24,7 @@ router.beforeEach(function (to, _from, next) {
         next('/auth');
     } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
         next('/coaches');
-    } else if (to.meta.requiresAuth && !store.getters.isAuthenticated && !store.getters.isAdmin) {
+    } else if (to.meta.requiresAdmin && store.getters.userEmail !== 'admin@email.com') {
         next('/coaches');
     } else {
         next();

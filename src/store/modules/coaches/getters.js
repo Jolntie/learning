@@ -10,10 +10,6 @@ export default {
         const userId = rootGetters.userId;
         return coaches.some(coach => coach.id === userId)
     },
-    isAdmin(_state, _getters, _rootState, rootGetters) {
-        const userEmail = rootGetters.userEmail;
-        return userEmail === 'admin@email.com';
-    },
     shouldUpdate(state) {
         const lastFetch = state.lastFetch;
         if (!lastFetch)
