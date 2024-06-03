@@ -6,7 +6,7 @@ export default {
     state() {
         return {
             userEmail: null,
-            isAdmin: null
+            isAdmin: false
         };
     },
     mutations,

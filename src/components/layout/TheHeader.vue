@@ -2,10 +2,10 @@
 export default {
   computed: {
     isAdmin() {
-      return this.$store.getters.userEmail === 'admin@email.com'
+      return this.$store.getters.isAdmin;
     },
     isCoach() {
-      return this.$store.getters['coaches/isCoach'];
+      return this.$store.getters.isCoach;
     },
     isLoggedIn() {
       return this.$store.getters.isAuthenticated;
@@ -13,8 +13,13 @@ export default {
     partialEmail() {
       const email = this.$store.getters.userEmail;
       if (email) {
+        const formData = {
+          email: email
+        }
+        this.$store.dispatch('isAdmin', formData)
+
         const emailParts = email.split('@');
-        return  `, ${emailParts[0]}`;
+        return `, ${emailParts[0]}`;
       } else {
         return '';
       }
@@ -48,6 +53,14 @@ export default {
       </div>
     </nav>
   </header>
+  <header class="admin" v-if="isAdmin">
+    <nav>
+      <div></div>
+        <ul>
+          <li><router-link to="/admin/all">All Admins</router-link></li>
+        </ul>
+    </nav>
+  </header>
 </template>
 
 <style scoped>
@@ -67,6 +80,12 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.admin {
+  height: 3rem;
+  position: sticky;
+  top: 5rem;
 }
 
 header a {
@@ -105,6 +124,7 @@ nav {
   margin: auto;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 ul {

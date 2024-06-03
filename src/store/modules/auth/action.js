@@ -88,6 +88,7 @@ export default {
 
         clearTimeout(timer);
 
+        context.rootGetters.resetAdminValue;
         context.commit('setUser', {
             token: null,
             userId: null,

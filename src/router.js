@@ -24,7 +24,7 @@ router.beforeEach(function (to, _from, next) {
         next('/auth');
     } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
         next('/coaches');
-    } else if (to.meta.requiresAdmin && store.getters.userEmail !== 'admin@email.com') {
+    } else if (to.meta.requiresAdmin && !store.getters.isAdmin) {
         next('/coaches');
     } else {
         next();
