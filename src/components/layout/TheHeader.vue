@@ -16,10 +16,7 @@ export default {
     partialEmail() {
       const email = this.$store.getters.userEmail;
       if (email) {
-        const formData = {
-          email: email
-        }
-        this.$store.dispatch('isAdmin', formData)
+        this.$store.dispatch('isAdmin', { email: email })
 
         const emailParts = email.split('@');
         return `, ${emailParts[0]}`;
@@ -58,14 +55,12 @@ export default {
   </header>
   <transition name="route" mode="out-in">
   <header class="admin" v-if="isAdmin && isAdminPage">
-
     <nav>
       <div></div>
       <ul>
         <li><router-link to="/admin/all">All Admins</router-link></li>
       </ul>
     </nav>
-
   </header>
   </transition>
 </template>

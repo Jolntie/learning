@@ -2,6 +2,7 @@
 export default {
     data() {
         return {
+            fullname: '',
             email: '',
             password: '',
             formIsValid: true,
@@ -40,6 +41,11 @@ export default {
                     email: this.email,
                     password: this.password
                 });
+                if (this.mode === 'signup')
+                    await this.$store.dispatch('setUser', {
+                        fullname: this.fullname,
+                        email: this.email
+                    });
 
                 const redirectUrl = `/${(this.$route.query.redirect || 'coaches')}`;
                 this.$router.replace(redirectUrl);
@@ -74,13 +80,17 @@ export default {
         </div>
         <base-card>
             <form @submit.prevent="submitForm">
+                <div class="form-control" v-if="mode === 'signup'">
+                    <label for="fullname">Fullname</label>
+                    <input type="fullname" id="fullname" v-model.trim="fullname" placeholder="John Doe">
+                </div>
                 <div class="form-control">
                     <label for="email">E-Mail</label>
-                    <input type="email" id="email" v-model.trim="email">
+                    <input type="email" id="email" v-model.trim="email" placeholder="johndoe@gmail.com">
                 </div>
                 <div class="form-control">
                     <label for="password">Password</label>
-                    <input type="password" id="password" v-model.trim="password">
+                    <input type="password" id="password" v-model.trim="password" placeholder="Welkom123!">
                 </div>
                 <p v-if="!formIsValid">Please enter a valid email and password.</p>
                 <base-button>{{ submitButtonCaption }}</base-button>

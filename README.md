@@ -37,7 +37,12 @@
 
 ### TODO's
 1. Admin pagina bevat een scherm met alle admins erop.
-1. Admin kan filteren op gebruikers/admins.
+1. Admin kan zoeken op admins/gebruikers.
+1. Admin kan de usage van de Authentication/database inzien.
+1. Gebruiker kan zoeken op coaches. - kijk naar hoe het gaat bij filteren op expertises.
+1. Welcome tekst staat er met voornaam i.p.v. begin email.
+1. Database slaat coaches en requests onder gebruikersnaam naam op.
+1. ~~Database slaat email, gebruikersnaam op !!geen wachtwoord!!.~~
 1. ~~Admin pagina.~~
 1. ~~Coaches toegang kunnen geven tot admin pagina via database.~~
 1. ~~Toegang geven via admin account. - overzicht pagina met elke coach en zoekfunctie?~~
