@@ -1,5 +1,8 @@
 export default {
-    fullname() {
-        
+    fullname(state) {
+        return state.fullname;
+    },
+    isAdmin(state) {
+        return state.isAdmin
     }
 }

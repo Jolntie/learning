@@ -13,13 +13,11 @@ export default {
     isLoggedIn() {
       return this.$store.getters.isAuthenticated;
     },
-    partialEmail() {
-      const email = this.$store.getters.userEmail;
-      if (email) {
-        this.$store.dispatch('isAdmin', { email: email })
-
-        const emailParts = email.split('@');
-        return `, ${emailParts[0]}`;
+    partialName() {
+      const fullname = this.$store.getters.fullname;
+      if (fullname) {
+        const firstName = fullname.split(' ');
+        return ` ${firstName[0]}`;
       } else {
         return '';
       }
@@ -27,7 +25,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('logout')
+      this.$store.dispatch('logout');
       this.$router.replace('/coaches');
     }
   }
@@ -40,7 +38,7 @@ export default {
         <h1><router-link to="/">Find a Coach</router-link></h1>
       </div>
       <div style="justify-content: center;">
-        <h1>Welcome{{ partialEmail }}</h1>
+        <h1>Welcome{{ partialName }}</h1>
       </div>
       <div style="justify-content: right;">
         <ul>

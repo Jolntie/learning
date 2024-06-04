@@ -46,6 +46,9 @@ export default {
             context.dispatch('autoLogout');
         }, expiresIn)
 
+        context.dispatch('getUserInfo', {
+            email: responseData.email
+        });
         context.commit('setUser', {
             token: responseData.idToken,
             userId: responseData.localId,
@@ -69,6 +72,9 @@ export default {
         }, expiresIn)
 
         if (token && userId) {
+            context.dispatch('getUserInfo', {
+                email: userEmail
+            });
             context.commit('setUser', {
                 token: token,
                 userId: userId,
@@ -88,7 +94,11 @@ export default {
 
         clearTimeout(timer);
 
-        context.rootGetters.resetAdminValue;
+        context.commit('addUserData', {
+            fullname: null,
+            isAdmin: false,
+            email: null
+        })
         context.commit('setUser', {
             token: null,
             userId: null,

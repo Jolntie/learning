@@ -1,12 +1,13 @@
 export default {
     addUserData(state, payload) {
         state.fullname = payload.fullname;
+        state.isAdmin = payload.isAdmin;
         state.userEmail = payload.email;
     },
-    getUser(state) {
-        return {
-            fullname: state.fullname,
-            email: state.userEmail
-        }
+    addAdmin(state, payload) {
+        state.isAdmin = payload.isAdmin;
+    },
+    isAdmin(state, payload) {
+        state.isAdmin = payload;
     }
 }

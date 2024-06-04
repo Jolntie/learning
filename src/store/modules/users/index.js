@@ -5,6 +5,7 @@ import getters from './getters.js';
 export default {
     state() {
         return {
+            isAdmin: false,
             fullname: null,
             userEmail: null
         };
