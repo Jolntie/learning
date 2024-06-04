@@ -2,7 +2,8 @@ export default {
     async setUser(context, data) {
         const newRequest = {
             fullname: data.fullname,
-            isAdmin: false
+            isAdmin: false,
+            isCoach: false
         };
 
         const userReconstructedEmail = data.email.replace(/[.]/g, '&');
@@ -34,6 +35,7 @@ export default {
         context.commit('addUserData', {
             fullname: responseData.fullname,
             isAdmin: responseData.isAdmin,
+            isCoach: responseData.isCoach,
             email: data.email
         });
     },

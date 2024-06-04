@@ -1,6 +1,6 @@
 export default {
     async registerCoach(context, data) {
-        const userId = context.rootGetters.userId;
+        const userId = context.rootGetters.fullname.replace(' ', '-');
         const coachData = {
             firstName: data.first,
             lastName: data.last,
@@ -23,6 +23,22 @@ export default {
             throw error;
         }
 
+        const newRequest = {
+            isCoach: true
+        };
+
+        const userReconstructedEmail = data.email.replace(/[.]/g, '&');
+        const newResponse = await fetch(`https://goals-7455a-default-rtdb.europe-west1.firebasedatabase.app/users/${userReconstructedEmail}.json`, {
+            method: 'PATCH',
+            body: JSON.stringify(newRequest)
+        });
+
+        const newResponseData = await newResponse.json();
+
+        if (!newResponse.ok) {
+            const error = new Error(newResponseData.message || 'Failed to send request.');
+            throw error;
+        }
         context.commit('registerCoach', {
             ...coachData,
             id: userId

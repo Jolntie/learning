@@ -3,6 +3,9 @@ export default {
         return state.fullname;
     },
     isAdmin(state) {
-        return state.isAdmin
+        return state.isAdmin;
+    },
+    isCoach(state) {
+        return state.isCoach;
     }
 }

@@ -6,6 +6,7 @@ export default {
     state() {
         return {
             isAdmin: false,
+            isCoach: false,
             fullname: null,
             userEmail: null
         };
