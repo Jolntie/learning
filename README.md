@@ -42,7 +42,9 @@
 1. Gebruiker kan zoeken op coaches. - kijk naar hoe het gaat bij filteren op expertises.
 1. Database slaat coaches en requests onder gebruikersnaam naam op.
 1. Als coach requests kunnen verwijderen.
-1. [object, object] bij note fixen.
+1. ~~Betere foutafhandeling bij pagina auth.~~
+1. ~~Betere foutafhandeling bij pagina registreren.~~
+1. ~~[object, object] bij note fixen.~~
 1. ~~Requests knop voor coaches fixen.~~
 1. ~~Welcome tekst staat er met voornaam i.p.v. begin email.~~
 1. ~~Database slaat email, gebruikersnaam op !!geen wachtwoord!!.~~

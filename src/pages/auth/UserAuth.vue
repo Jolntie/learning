@@ -34,6 +34,11 @@ export default {
                 this.formIsValid = false;
                 return;
             }
+            
+            if (this.mode === 'signup' && this.fullname.split(' ').length <= 1) {
+                this.formIsValid = false;
+                return;
+            }
 
             this.isLoading = true;
             try {

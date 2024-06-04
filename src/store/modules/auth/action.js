@@ -30,8 +30,15 @@ export default {
         const responseData = await response.json();
 
         if (!response.ok) {
-            const error = new Error(responseData.error.message || 'Failed to authenticate.');
-            throw error;
+            const errStart = 'An error occurred:'
+            if (!responseData.error.message) throw `${errStart} Failed to authenticate.`;
+            const errMsg = responseData.error.message
+            if (errMsg === 'INVALID_LOGIN_CREDENTIALS') throw `${errStart} Invalid login credentials.`;
+            else if (errMsg === 'MISSING_PASSWORD') throw `${errStart} Password is missing.`;
+            else if (errMsg === 'USER_DISABLED') throw `${errStart} Account is disabled.`;
+            else {
+                throw `${errStart} ${errMsg}`
+            }
         }
 
         const expiresIn = +responseData.expiresIn * 1000;
