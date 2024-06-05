@@ -1,7 +1,7 @@
 # Project - Vue App
 
 ## Linkjes 
-### website: https://goals-7455a.firebaseapp.com
+### website: http://jellevoorberg.nl 
 
 ### Eerste keer opstarten:
 - Open de powershell en voer de code 'npm install' uit.
