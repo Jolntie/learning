@@ -1,7 +1,7 @@
 export default {
-    userEmail(state) {
-        return state.userEmail;
-    },
+    // userEmail(state) {
+    //     return state.userEmail;
+    // },
     userId(state) {
         return state.userId;
     },

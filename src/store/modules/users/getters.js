@@ -7,5 +7,8 @@ export default {
     },
     isCoach(state) {
         return state.isCoach;
+    },
+    userEmail(state) {
+        return state.userEmail;
     }
 }

@@ -10,8 +10,9 @@ export default {
             areas: data.areas
         };
 
-        const token = context.rootGetters.token;
+        await context.dispatch('setUserToCoach');
 
+        const token = context.rootGetters.token;
         const response = await fetch(`https://goals-7455a-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json?auth=${token}`, {
             method: 'PUT',
             body: JSON.stringify(coachData)
@@ -23,22 +24,6 @@ export default {
             throw error;
         }
 
-        const newRequest = {
-            isCoach: true
-        };
-
-        const userReconstructedEmail = data.email.replace(/[.]/g, '&');
-        const newResponse = await fetch(`https://goals-7455a-default-rtdb.europe-west1.firebasedatabase.app/users/${userReconstructedEmail}.json`, {
-            method: 'PATCH',
-            body: JSON.stringify(newRequest)
-        });
-
-        const newResponseData = await newResponse.json();
-
-        if (!newResponse.ok) {
-            const error = new Error(newResponseData.message || 'Failed to send request.');
-            throw error;
-        }
         context.commit('registerCoach', {
             ...coachData,
             id: userId
@@ -72,5 +57,19 @@ export default {
 
         context.commit('setCoaches', coaches);
         context.commit('setFetchTimestamp');
+    },
+    async setUserToCoach(context) {
+        const userEmail = context.rootGetters.userEmail
+        const userReconstructedEmail = userEmail.replace('.', '&');
+        const response = await fetch(`https://goals-7455a-default-rtdb.europe-west1.firebasedatabase.app/users/${userReconstructedEmail}.json`, {
+            method: 'PATCH',
+            body: JSON.stringify({ isCoach: true })
+        });
+        const responseData = await response.json();
+
+        if (!response.ok) {
+            const error = new Error(responseData.message || 'Failed to fetch!');
+            throw error;
+        }
     }
 };

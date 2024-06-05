@@ -23,9 +23,9 @@ export default {
         context.commit('addRequest', newRequest)
     },
     async fetchRequests(context) {
-        const coachId = context.rootGetters.userId;
+        const coachName = context.rootGetters.fullname.replace(' ', '-');
         const token = context.rootGetters.token;
-        const response = await fetch(`https://goals-7455a-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json?auth=${token}`);
+        const response = await fetch(`https://goals-7455a-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachName}.json?auth=${token}`);
         const responseData = await response.json()
 
         if (!response.ok) {
@@ -34,10 +34,11 @@ export default {
         }
 
         const requests = [];
+        console.log(responseData)
         for (const key in responseData) {
             const request = {
                 id: key,
-                coachId: coachId,
+                coachId: coachName,
                 userEmail: responseData[key].userEmail,
                 message: responseData[key].message
             };

@@ -40,8 +40,9 @@
 1. Admin kan zoeken op admins/gebruikers.
 1. Admin kan de usage van de Authentication/database inzien.
 1. Gebruiker kan zoeken op coaches. - kijk naar hoe het gaat bij filteren op expertises.
-1. Database slaat coaches en requests onder gebruikersnaam naam op.
 1. Als coach requests kunnen verwijderen.
+1. ~~Database slaat coaches en requests onder gebruikersnaam naam op.~~
+1. ~~Pagina ziet niet of je een coach bent, FIX.~~
 1. ~~Betere foutafhandeling bij pagina auth.~~
 1. ~~Betere foutafhandeling bij pagina registreren.~~
 1. ~~[object, object] bij note fixen.~~

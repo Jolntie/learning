@@ -45,7 +45,7 @@ export default {
             return !this.isLoading && this.$store.getters['coaches/hasCoaches'];
         },
         isCoach() {
-            return this.$store.getters['coaches/isCoach'];
+            return this.$store.getters.isCoach;
         }
     },
     created() {
