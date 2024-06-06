@@ -31,9 +31,11 @@
 6. geeft een 404 error pagina weer bij een niet erkende url route.
 
 ### TODO's
+1. De footer vullen met informatie.
 1. Admin pagina bevat een scherm met alle admins erop.
 1. Admin kan zoeken op admins/gebruikers.
 1. Admin kan de usage van de Authentication/database inzien.
+1. ~~Een footer met passende stijl.~~
 1. ~~Bij builden van applicatie automatisch $env:NODE_OPTIONS = "--openssl-legacy-provider" uitvoeren.~~
 1. ~~Als coach requests kunnen verwijderen.~~
 1. ~~Gebruiker kan zoeken op coaches. - kijk naar hoe het gaat bij filteren op expertises.~~

@@ -1,5 +1,10 @@
 <script>
+import TheFooter from './TheFooter.vue';
+
 export default {
+  components: {
+    TheFooter
+  },
   computed: {
     isAdmin() {
       return this.$store.getters.isAdmin;
@@ -32,39 +37,52 @@ export default {
 };
 </script>
 <template>
-  <header>
-    <nav>
-      <div>
-        <h1><router-link to="/">Find a Coach</router-link></h1>
-      </div>
-      <div style="justify-content: center;">
-        <h1>Welcome{{ partialName }}</h1>
-      </div>
-      <div style="justify-content: right;">
-        <ul>
-          <li v-if="isAdmin"><router-link to="/admin">Admin</router-link></li>
-          <li style="min-width: 8.4rem;"><router-link to="/coaches">All Coaches</router-link></li>
-          <li v-if="isCoach"><router-link to="/requests">Requests</router-link></li>
-          <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
-          <li v-else><base-button @click="logout">Logout</base-button></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <transition name="route" mode="out-in">
-  <header class="admin" v-if="isAdmin && isAdminPage">
-    <nav>
-      <div></div>
-      <ul>
-        <li><router-link to="/admin/all">All Admins</router-link></li>
-      </ul>
-    </nav>
-  </header>
-  </transition>
+  <div class="header-footer">
+    <div class="header">
+      <header>
+        <nav>
+          <div>
+            <h1><router-link to="/">Find a Coach</router-link></h1>
+          </div>
+          <div style="justify-content: center;">
+            <h1>Welcome{{ partialName }}</h1>
+          </div>
+          <div style="justify-content: right;">
+            <ul>
+              <li v-if="isAdmin"><router-link to="/admin">Admin</router-link></li>
+              <li style="min-width: 8.4rem;"><router-link to="/coaches">All Coaches</router-link></li>
+              <li v-if="isCoach"><router-link to="/requests">Requests</router-link></li>
+              <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
+              <li v-else><base-button @click="logout">Logout</base-button></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <transition name="route" mode="out-in">
+        <header class="admin" v-if="isAdmin && isAdminPage">
+          <nav>
+            <div></div>
+            <ul>
+              <li><router-link to="/admin/all">All Admins</router-link></li>
+            </ul>
+          </nav>
+        </header>
+      </transition>
+    </div>
+    <slot></slot>
+    
+    <the-footer></the-footer>
+  </div>
 </template>
 
 <style scoped>
-div {
+.header-footer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header div {
   width: 34%;
   display: flex;
   align-content: center;
