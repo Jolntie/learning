@@ -32,6 +32,13 @@
 
 ### TODO's
 1. De footer vullen met informatie.
+1. Contact pagina toevoegen.
+1. Invoer veld voor contact pagina.
+1. Selectie maken waarvoor ze contact willen opnemen.
+1. Voor elke selectie zorgen dat het er 'goed' uitziet.
+1. Betere validatie op registreren coach. - bijv. zorgen dat je niet als expertise '.' kan invullen.
+1. Bij fout inloggen/registreren betere fout afhandeling.
+1. Account pagina waarop alle acount informatie is te zien.
 1. Admin pagina bevat een scherm met alle admins erop.
 1. Admin kan zoeken op admins/gebruikers.
 1. Admin kan de usage van de Authentication/database inzien.
