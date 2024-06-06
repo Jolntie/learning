@@ -38,6 +38,10 @@ export default {
                     && !coach.areas.includes('career'))
                     return true;
 
+                if (this.activeFilters.inputFilter 
+                && (coach.firstName + ' ' + coach.lastName).toLowerCase().includes(this.activeFilters.inputFilter.toLowerCase()))
+                    return true;
+
                 return false;
             });
         },

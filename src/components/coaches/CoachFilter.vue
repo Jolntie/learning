@@ -8,7 +8,8 @@ export default {
                 backend: true,
                 career: true,
                 other: true
-            }
+            },
+            inputFilter: ''
         };
     },
     methods: {
@@ -17,6 +18,7 @@ export default {
             const isActive = event.target.checked;
             const updatedFilters = {
                 ...this.filters,
+                inputFilter: this.inputFilter,
                 [inputId]: isActive
             };
             this.filters = updatedFilters;
@@ -44,6 +46,9 @@ export default {
             <input type="checkbox" id="other" checked @change="setFilter" />
             <label for="other">Other</label>
         </span>
+        <span>
+            <input type="text" v-model.trim="inputFilter" @blur="setFilter" placeholder="Name of coach">
+        </span>
     </base-card>
 </template>
 
@@ -67,5 +72,16 @@ h2 {
 
 .filter-option.active label {
   font-weight: bold;
+}
+
+input {
+  border: 1px solid #ccc;
+  font: inherit;
+}
+
+input:focus {
+  background-color: #f0e6fd;
+  outline: none;
+  border-color: #3d008d;
 }
 </style>
