@@ -14,11 +14,6 @@
 - Voer 'npm run build' uit in de powershell.
 - Voer 'firebase deploy' uit in de powershell.
 
-### Bij e.v.t. problemen:
-- build errors (mogelijke oplossingen):
-- - In de powershell voer de code '$env:NODE_OPTIONS = "--openssl-legacy-provider"' uit.
-
-
 ### Functionaliteiten
 #### Je kunt:
 1. inloggen/registreren.
@@ -39,6 +34,7 @@
 1. Admin pagina bevat een scherm met alle admins erop.
 1. Admin kan zoeken op admins/gebruikers.
 1. Admin kan de usage van de Authentication/database inzien.
+1. ~~Bij builden van applicatie automatisch $env:NODE_OPTIONS = "--openssl-legacy-provider" uitvoeren.~~
 1. ~~Als coach requests kunnen verwijderen.~~
 1. ~~Gebruiker kan zoeken op coaches. - kijk naar hoe het gaat bij filteren op expertises.~~
 1. ~~Database slaat coaches en requests onder gebruikersnaam naam op.~~
