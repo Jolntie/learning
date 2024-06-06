@@ -34,7 +34,6 @@ export default {
         }
 
         const requests = [];
-        console.log(responseData)
         for (const key in responseData) {
             const request = {
                 id: key,
@@ -46,5 +45,17 @@ export default {
         }
 
         context.commit('setRequests', requests);
+    },
+    async deleteRequest(_context, payload) {
+        const response = await fetch(`https://goals-7455a-default-rtdb.europe-west1.firebasedatabase.app/requests/${payload.coachId}/${payload.requestId}.json`, {
+            method: 'DELETE'
+        });
+
+        const responseData = await response.json();
+
+        if (!response.ok) {
+            const error = new Error(responseData.message || 'Failed to fetch requests.');
+            throw error;
+        }
     }
 };

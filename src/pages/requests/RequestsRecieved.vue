@@ -32,6 +32,9 @@ export default {
       }
       this.isLoading = false;
     },
+    loading() {
+      this.isLoading = true;
+    },
     handleError() {
       this.error = null;
     }
@@ -50,8 +53,8 @@ export default {
         </header>
         <base-spinner v-if="isLoading"></base-spinner>
         <ul v-else-if="hasRequests">
-          <request-item v-for="req in receivedRequests" :key="req.id" :email="req.userEmail"
-            :message="req.message"></request-item>
+          <request-item v-for="req in receivedRequests" :key="req.id" :id="req.id" :email="req.userEmail"
+            :message="req.message" @reload-requests="loadRequests" @is-loading="loading" />
         </ul>
         <h3 v-else>You haven't recieived any requests.</h3>
       </base-card>
